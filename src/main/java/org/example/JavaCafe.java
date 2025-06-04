@@ -19,8 +19,10 @@ public class JavaCafe {
             System.out.println("Welcome to Java Cafe!");
             System.out.println("1. View Food Menu");
             System.out.println("2. View Drink Menu");
-            System.out.println("3. View Current Order");
-            System.out.println("4. Exit");
+            System.out.println("3. View Dessert Menu");
+            System.out.println("4. View Current Order");
+            System.out.println("5. Remove Item from the Order");
+            System.out.println("6. Exit");
 
             String choice = scanner.nextLine();
             if (choice.equals("1")) {
@@ -28,8 +30,12 @@ public class JavaCafe {
             } else if (choice.equals("2")) {
                 viewDrinkMenu();
             } else if (choice.equals("3")) {
-                viewCurrentOrder();
+                viewDessertMenu();
             } else if (choice.equals("4")) {
+                viewCurrentOrder();
+            } else if (choice.equals("5")) {
+                removeItem();
+            } else if (choice.equals("6")) {
                 break;
             } else {
                 System.out.println("Invalid choice. Please try again.");
@@ -89,6 +95,39 @@ public class JavaCafe {
         }
     }
 
+    public void viewDessertMenu() {
+        while(true) {
+            System.out.println("Dessert Menu");
+            System.out.println("1. Tiramisu");
+            System.out.println("2. Chocolate fondant");
+            System.out.println("3. Red velvet cake");
+            System.out.println("4. Return to Main Menu");
+
+            String choice = scanner.nextLine();
+            if (choice.equals("1")) {
+                order.add("Tiramisu");
+            } else if (choice.equals("2")) {
+                order.add("Chocolate fondant");
+            } else if (choice.equals("3")) {
+                order.add("Red velvet cake");
+            } else if (choice.equals("4")) {
+                break;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    public void removeItem() {
+        viewCurrentOrder();
+        System.out.println("Which item do you want to remove? ");
+        String item = scanner.next();
+        if (order.contains(item)) {
+            order.remove(item);
+        } else {
+            System.out.println(item + " was not found in the order.");
+        }
+    }
     /**
      * Displays the current order.
      */
